@@ -1,0 +1,16 @@
+api_auth_login:
+    path: /api/auth/login
+    methods:  [POST]
+
+auth:
+    prefix: 'api'
+    resource: '../../src/Resources/config/routing/auth.xml'
+
+user:
+    prefix: 'api'
+    resource: '../../src/Resources/config/routing/user.xml'
+
+group:
+    prefix: 'api'
+    resource: '../../src/Resources/config/routing/ugroup.xml'
+

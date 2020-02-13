@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<serializer>
+    <class name="App\Entity\User">
+
+        <property name="id"
+                  type="integer"
+                  groups="Get"/>
+
+        <property name="name"
+                  type="string"
+                  groups="Get,Create,Update"/>
+    </class>
+</serializer>

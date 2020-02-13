@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<routes xmlns="http://symfony.com/schema/routing"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://symfony.com/schema/routing
+        http://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <route id="app.user.get"
+           path="user/all"
+           methods="get"
+           controller="App\Controller\User\UserController::getAllUsers">
+    </route>
+
+    <route id="app.user.add.group"
+           path="user/{user}/add/group/{group}"
+           methods="put"
+           controller="App\Controller\User\UserController::addUserGroup">
+    </route>
+
+    <route id="app.user.remove.group"
+           path="user/{user}/remove/group/{group}"
+           methods="put"
+           controller="App\Controller\User\UserController::removeUserGroup">
+    </route>
+
+    <route id="app.user.create"
+           path="user/create"
+           methods="post"
+           controller="App\Controller\User\UserController::createUser">
+        <default key="_validate">Create</default>
+    </route>
+
+    <route id="app.user.delete"
+           path="user/{id}"
+           methods="delete"
+           controller="App\Controller\User\UserController::deleteUser">
+    </route>
+
+</routes>
