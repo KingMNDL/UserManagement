@@ -81,6 +81,11 @@ class GroupController extends AbstractFOSRestController
      *         description="successful operation",
      *         @Model(type=UGroup::class, groups={"Get"})
      *     ),
+     *     @SWG\Response(
+     *          response="422",
+     *          description="Invalid request",
+     *          @SWG\Schema(ref="#/definitions/ValidationError")
+     *      ),
      *     security={{"Bearer":{}}}
      * )
      *
@@ -116,18 +121,26 @@ class GroupController extends AbstractFOSRestController
      *         response=204,
      *         description="Removed successfully",
      *     ),
+     *     @SWG\Response(
+     *          response=404,
+     *          description="Not found",
+     *          @SWG\Schema(ref="#/definitions/NotFoundError")
+     *      ),
      *     security={{"Bearer":{}}}
      * )
      *
      * @param UGroup $group
      * @throws \Exception
+     * @return Response
      */
-    public function deleteGroup(UGroup $group): void
+    public function deleteGroup(UGroup $group): Response
     {
         $this->throwExceptionIfGroupUsed($group);
 
         $this->groupManager->delete($group);
         $this->entityManager->flush();
+
+        return new Response(null, Response::HTTP_NO_CONTENT);
     }
 
     /**

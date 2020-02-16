@@ -7,14 +7,14 @@ use Swagger\Annotations as SWG;
 class LoginRequest
 {
     /**
-     * @SWG\Property(description="Username." , example="Admin")
+     * @SWG\Property(description="Username." , example="admin")
      *
      * @var string
      */
     private $username;
 
     /**
-     * @SWG\Property(description="Password.", example="Admin")
+     * @SWG\Property(description="Password.", example="password")
      *
      * @var string
      */

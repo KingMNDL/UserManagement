@@ -12,6 +12,27 @@ nelmio_api_doc:
                 in: header
         security:
             - Bearer: []
+        definitions:
+            NotFoundError:
+                description: "Not found error"
+                type: object
+                properties:
+                    code:
+                        type: integer
+                        example: 404
+                    message:
+                        type: string
+                        example: "Not found."
+            ValidationError:
+                descrition: "Validation error"
+                type: "object"
+                properties:
+                    code:
+                        type: interger
+                        example: 422
+                    message:
+                        type: string
+                        example: "Invalid entity"
     areas: # to filter documented areas
         path_patterns:
             - ^/api(?!/doc$) # Accepts routes under /api except /api/doc

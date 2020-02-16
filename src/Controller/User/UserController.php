@@ -86,6 +86,11 @@ class UserController extends AbstractFOSRestController
      *         description="successful operation",
      *         @Model(type=User::class, groups={"Get"})
      *     ),
+     *      @SWG\Response(
+     *          response="422",
+     *          description="Invalid request",
+     *          @SWG\Schema(ref="#/definitions/ValidationError")
+     *      ),
      *     security={{"Bearer":{}}}
      * )
      *
@@ -126,26 +131,30 @@ class UserController extends AbstractFOSRestController
      *          type="string",
      *          format="string"
      *      ),
-     *     @SWG\Response(
-     *         response="200",
-     *         description="successful operation",
-     *         @Model(type=User::class, groups={"Get"})
-     *     ),
+     *      @SWG\Response(
+     *          response="204",
+     *          description="Updated",
+     *      ),
+     *      @SWG\Response(
+     *          response=404,
+     *          description="Not found",
+     *          @SWG\Schema(ref="#/definitions/NotFoundError")
+     *      ),
      *     security={{"Bearer":{}}}
      * )
      *
      * @param User $user
      * @param UGroup $group
      *
-     * @return View
+     * @return Response
      */
-    public function addUserGroup(User $user, UGroup $group): View
+    public function addUserGroup(User $user, UGroup $group): Response
     {
         $user = $this->userManager->attachGroupToUser($user, $group);
 
         $this->entityManager->flush();
 
-        return $this->view($user, Response::HTTP_OK);
+        return new Response(null, Response::HTTP_NO_CONTENT);
     }
 
     /**
@@ -171,26 +180,30 @@ class UserController extends AbstractFOSRestController
      *          type="string",
      *          format="string"
      *      ),
-     *     @SWG\Response(
-     *         response="200",
-     *         description="successful operation",
-     *         @Model(type=User::class, groups={"Get"})
-     *     ),
+     *      @SWG\Response(
+     *          response="204",
+     *          description="Updated",
+     *      ),
+     *      @SWG\Response(
+     *          response=404,
+     *          description="Not found",
+     *          @SWG\Schema(ref="#/definitions/NotFoundError")
+     *      ),
      *     security={{"Bearer":{}}}
      * )
      *
      * @param User $user
      * @param UGroup $group
      *
-     * @return View
+     * @return Response
      */
-    public function removeUserGroup(User $user, UGroup $group): View
+    public function removeUserGroup(User $user, UGroup $group): Response
     {
         $user = $this->userManager->removeGroupFromUser($user, $group);
 
         $this->entityManager->flush();
 
-        return $this->view($user, Response::HTTP_OK);
+        return new Response(null, Response::HTTP_NO_CONTENT);
     }
 
     /**
@@ -211,14 +224,23 @@ class UserController extends AbstractFOSRestController
      *         response=204,
      *         description="Removed successfully",
      *     ),
+     *      @SWG\Response(
+     *          response=404,
+     *          description="Not found",
+     *          @SWG\Schema(ref="#/definitions/NotFoundError")
+     *      ),
      *     security={{"Bearer":{}}}
      * )
      *
      * @param User $user
+     *
+     * @return Response
      */
-    public function deleteUser(User $user): void
+    public function deleteUser(User $user): Response
     {
         $this->userManager->delete($user);
         $this->entityManager->flush();
+
+        return new Response(null, Response::HTTP_NO_CONTENT);
     }
 }

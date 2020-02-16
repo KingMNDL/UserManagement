@@ -9,17 +9,19 @@ use Swagger\Annotations as SWG;
 class User
 {
     /**
+     * @SWG\Property(description="The unique identifier of the user.", example="1")
+     *
+     * @var int
+     */
+    private $id;
+
+    /**
      * @SWG\Property(description="Group", example="1")
      *
      * @var ArrayCollection|CollectionInterface|UGroup[]|string[]
      */
     protected $groups;
-    /**
-     * @SWG\Property(description="The unique identifier of the user.")
-     *
-     * @var int
-     */
-    private $id;
+
     /**
      * @SWG\Property(description="User name", example="Mindaugas")
      *

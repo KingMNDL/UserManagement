@@ -7,7 +7,7 @@ use Swagger\Annotations as SWG;
 class UGroup
 {
     /**
-     * @SWG\Property(description="The unique identifier of the user.")
+     * @SWG\Property(description="The unique identifier of the user.", example="1")
      *
      * @var int
      */
