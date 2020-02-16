@@ -7,7 +7,6 @@ Simple User Management API written on Symfony 4
 
 ## ToDo's
 
-- Finish SWG docs
 - Finish Behat tests
 
 ## Installation
